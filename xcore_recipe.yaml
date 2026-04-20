@@ -1,0 +1,131 @@
+name: XCore
+version: "1.0.0"
+author: Xarma
+description: XCore Framework - Framework FiveM custom by Xarma.
+
+tasks:
+    - action: download_file
+      url: https://github.com/citizenfx/cfx-server-data/archive/master.zip
+      path: ./tmp/cfx-server-data.zip
+
+    - action: unzip
+      src: ./tmp/cfx-server-data.zip
+      dest: ./tmp/cfx-server-data
+
+    - action: move_path
+      src: ./tmp/cfx-server-data/cfx-server-data-master/resources
+      dest: ./resources
+      overwrite: true
+
+    - action: download_github
+      src: overextended/oxmysql
+      ref: main
+      dest: ./resources/[standalone]/oxmysql
+
+    - action: download_github
+      src: overextended/ox_lib
+      ref: main
+      dest: ./resources/[standalone]/ox_lib
+
+    - action: ensure_dir
+      path: ./resources/[xcore]
+
+    - action: download_github
+      src: Xarma1/XCore
+      ref: main
+      dest: ./tmp/xcore
+
+    - action: move_path
+      src: ./tmp/xcore/xc_shared
+      dest: ./resources/[xcore]/xc_shared
+      overwrite: true
+
+    - action: move_path
+      src: ./tmp/xcore/xc_core
+      dest: ./resources/[xcore]/xc_core
+      overwrite: true
+
+    - action: move_path
+      src: ./tmp/xcore/xc_bridge
+      dest: ./resources/[xcore]/xc_bridge
+      overwrite: true
+
+    - action: move_path
+      src: ./tmp/xcore/xc_economy
+      dest: ./resources/[xcore]/xc_economy
+      overwrite: true
+
+    - action: move_path
+      src: ./tmp/xcore/xc_jobs
+      dest: ./resources/[xcore]/xc_jobs
+      overwrite: true
+
+    - action: move_path
+      src: ./tmp/xcore/xc_inventory
+      dest: ./resources/[xcore]/xc_inventory
+      overwrite: true
+
+    - action: move_path
+      src: ./tmp/xcore/xc_vehicles
+      dest: ./resources/[xcore]/xc_vehicles
+      overwrite: true
+
+    - action: move_path
+      src: ./tmp/xcore/xc_hud
+      dest: ./resources/[xcore]/xc_hud
+      overwrite: true
+
+    - action: move_path
+      src: ./tmp/xcore/xc_notify
+      dest: ./resources/[xcore]/xc_notify
+      overwrite: true
+
+    - action: move_path
+      src: ./tmp/xcore/xc_menu
+      dest: ./resources/[xcore]/xc_menu
+      overwrite: true
+
+    - action: move_path
+      src: ./tmp/xcore/xc_multichar
+      dest: ./resources/[xcore]/xc_multichar
+      overwrite: true
+
+    - action: move_path
+      src: ./tmp/xcore/xc_admin
+      dest: ./resources/[xcore]/xc_admin
+      overwrite: true
+
+    - action: connect_database
+
+    - action: query_database
+      file: ./tmp/xcore/xcore.sql
+
+    - action: write_file
+      file: ./server.cfg
+      data: |
+        sv_hostname "{{serverName}}"
+        sets tags "xcore, roleplay, fivem"
+        sets locale "it"
+        {{serverEndpoints}}
+        sv_maxclients {{maxClients}}
+        sv_licenseKey {{svLicense}}
+        set mysql_connection_string "{{dbConnectionString}}"
+        ensure oxmysql
+        ensure ox_lib
+        ensure xc_shared
+        ensure xc_core
+        ensure xc_bridge
+        ensure xc_economy
+        ensure xc_jobs
+        ensure xc_inventory
+        ensure xc_vehicles
+        ensure xc_notify
+        ensure xc_menu
+        ensure xc_hud
+        ensure xc_multichar
+        ensure xc_admin
+        sv_scriptHookAllowed 0
+        set onesync on
+
+    - action: remove_path
+      path: ./tmp

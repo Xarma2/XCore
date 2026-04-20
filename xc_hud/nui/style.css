@@ -1,0 +1,178 @@
+/* ============================================================
+   XCore HUD — Dark Tech Design System
+   Palette: #080B14 bg | #00AAFF primary | #00E5FF accent
+   ============================================================ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Barlow Condensed', 'Segoe UI', sans-serif;
+  background: transparent;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  user-select: none;
+}
+
+#hud { width: 100%; height: 100%; position: relative; transition: opacity 0.3s ease; }
+#hud.hud-hidden { opacity: 0; pointer-events: none; }
+#hud.hud-visible { opacity: 1; }
+
+/* ── Vitali (basso sinistra) ── */
+#hud-vitals {
+  position: absolute;
+  bottom: 80px;
+  left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stat-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(8, 11, 20, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 170, 255, 0.2);
+  border-radius: 6px;
+  padding: 5px 10px;
+  width: 200px;
+}
+
+.stat-icon {
+  font-size: 13px;
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.bar-track {
+  flex: 1;
+  height: 6px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+.health-fill  { background: linear-gradient(90deg, #ff4444, #ff6666); width: 100%; }
+.armor-fill   { background: linear-gradient(90deg, #00AAFF, #00E5FF); width: 0%;   }
+.hunger-fill  { background: linear-gradient(90deg, #f5a623, #f7c948); width: 100%; }
+.thirst-fill  { background: linear-gradient(90deg, #00AAFF, #00E5FF); width: 100%; }
+
+.stat-value {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  font-weight: 600;
+  width: 28px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ── Info player (basso destra) ── */
+#hud-info {
+  position: absolute;
+  bottom: 80px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  background: rgba(8, 11, 20, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 170, 255, 0.2);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.hud-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.hud-job {
+  font-size: 12px;
+  color: #00AAFF;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hud-cash {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 4px;
+}
+
+.cash-icon {
+  font-size: 14px;
+  color: #00E5FF;
+  font-weight: 700;
+}
+
+#val-cash {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Speedometer (centro basso) ── */
+#hud-speed {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#hud-speed.speed-hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(20px);
+  pointer-events: none;
+}
+
+#hud-speed.speed-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.speed-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: rgba(8, 11, 20, 0.85);
+  border: 2px solid rgba(0, 170, 255, 0.4);
+  box-shadow: 0 0 20px rgba(0, 170, 255, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+#val-speed {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.speed-unit {
+  font-size: 10px;
+  color: #00AAFF;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}

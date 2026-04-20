@@ -1,0 +1,106 @@
+/* XCore Notify — Dark Tech */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: transparent;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  font-family: 'Barlow Condensed', 'Segoe UI', sans-serif;
+}
+
+#notify-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 9999;
+  max-width: 340px;
+}
+
+.notify {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: rgba(8, 11, 20, 0.92);
+  backdrop-filter: blur(12px);
+  border-left: 3px solid #00AAFF;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+  animation: slideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  position: relative;
+  overflow: hidden;
+}
+
+.notify.removing {
+  animation: slideOut 0.3s ease forwards;
+}
+
+.notify.success { border-left-color: #22c55e; }
+.notify.error   { border-left-color: #ef4444; }
+.notify.warning { border-left-color: #f59e0b; }
+.notify.info    { border-left-color: #00AAFF; }
+.notify.primary { border-left-color: #00E5FF; }
+
+.notify-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.notify-body { flex: 1; }
+
+.notify-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+
+.notify.success .notify-title { color: #22c55e; }
+.notify.error   .notify-title { color: #ef4444; }
+.notify.warning .notify-title { color: #f59e0b; }
+.notify.info    .notify-title { color: #00AAFF; }
+.notify.primary .notify-title { color: #00E5FF; }
+
+.notify-msg {
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.4;
+}
+
+.notify-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: currentColor;
+  opacity: 0.4;
+  animation: progress linear forwards;
+}
+
+.notify.success .notify-progress { color: #22c55e; }
+.notify.error   .notify-progress { color: #ef4444; }
+.notify.warning .notify-progress { color: #f59e0b; }
+.notify.info    .notify-progress { color: #00AAFF; }
+.notify.primary .notify-progress { color: #00E5FF; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(40px) scale(0.95); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes slideOut {
+  from { opacity: 1; transform: translateX(0); max-height: 100px; }
+  to   { opacity: 0; transform: translateX(40px); max-height: 0; padding: 0; margin: 0; }
+}
+
+@keyframes progress {
+  from { width: 100%; }
+  to   { width: 0%; }
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>XCore Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app" class="hidden">
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-logo">X<span>Core</span> <span class="badge">Admin</span></div>
+      <div class="panel-actions">
+        <button class="btn-icon" onclick="refreshPlayers()" title="Aggiorna">↻</button>
+        <button class="btn-icon btn-close" onclick="closePanel()">✕</button>
+      </div>
+    </div>
+
+    <div class="panel-tabs">
+      <button class="tab active" data-tab="players">Giocatori</button>
+      <button class="tab" data-tab="bans">Ban</button>
+    </div>
+
+    <div id="tab-players" class="tab-content">
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Cerca per nome, ID..." oninput="filterPlayers()">
+      </div>
+      <div id="players-list"></div>
+    </div>
+
+    <div id="tab-bans" class="tab-content hidden">
+      <div id="bans-list"><p class="empty-msg">Nessun ban attivo.</p></div>
+    </div>
+  </div>
+
+  <!-- Modal azioni player -->
+  <div id="action-modal" class="hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <span id="modal-player-name"></span>
+        <button class="btn-icon" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <button class="action-btn" onclick="doTp()">📍 Teleporta da me</button>
+        <button class="action-btn" onclick="doSpectate()">👁 Spectate</button>
+        <button class="action-btn" onclick="doHeal()">❤️ Cura</button>
+        <button class="action-btn" onclick="doRevive()">💊 Revive</button>
+        <button class="action-btn" onclick="doFreeze()">❄️ Freeze</button>
+        <button class="action-btn danger" onclick="showKick()">👢 Kick</button>
+        <button class="action-btn danger" onclick="showBan()">🔨 Ban</button>
+      </div>
+      <div id="kick-form" class="sub-form hidden">
+        <input type="text" id="kick-reason" placeholder="Motivo kick...">
+        <button class="btn-primary" onclick="confirmKick()">Conferma Kick</button>
+      </div>
+      <div id="ban-form" class="sub-form hidden">
+        <input type="text" id="ban-reason" placeholder="Motivo ban...">
+        <input type="number" id="ban-duration" placeholder="Ore (0=permanente)" min="0">
+        <button class="btn-danger" onclick="confirmBan()">Conferma Ban</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>XCore Menu</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Context Menu -->
+<div id="context-overlay" class="hidden">
+  <div id="context-menu">
+    <div id="context-title"></div>
+    <div id="context-items"></div>
+  </div>
+</div>
+
+<!-- Radial Menu -->
+<div id="radial-overlay" class="hidden">
+  <svg id="radial-svg" viewBox="-200 -200 400 400"></svg>
+  <div id="radial-center">
+    <div id="radial-label"></div>
+  </div>
+</div>
+
+<!-- Progressbar -->
+<div id="progress-container" class="hidden">
+  <div id="progress-label"></div>
+  <div id="progress-track">
+    <div id="progress-fill"></div>
+  </div>
+  <div id="progress-cancel" onclick="cancelProgress()">Annulla</div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

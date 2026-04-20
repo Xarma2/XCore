@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>XCore — Selezione Personaggio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app" class="hidden">
+  <!-- Background -->
+  <div class="bg-overlay"></div>
+
+  <!-- Logo -->
+  <div class="logo-area">
+    <div class="logo-text">X<span>Core</span></div>
+    <div class="logo-sub">Seleziona il tuo personaggio</div>
+  </div>
+
+  <!-- Slots personaggi -->
+  <div id="char-slots"></div>
+
+  <!-- Form creazione -->
+  <div id="create-form" class="hidden">
+    <div class="form-card">
+      <div class="form-title">Crea Personaggio</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nome</label>
+          <input type="text" id="inp-firstname" placeholder="Mario" maxlength="30">
+        </div>
+        <div class="form-group">
+          <label>Cognome</label>
+          <input type="text" id="inp-lastname" placeholder="Rossi" maxlength="30">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Data di Nascita</label>
+          <input type="date" id="inp-dob">
+        </div>
+        <div class="form-group">
+          <label>Genere</label>
+          <select id="inp-gender">
+            <option value="0">Maschio</option>
+            <option value="1">Femmina</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn-secondary" onclick="closeCreateForm()">Annulla</button>
+        <button class="btn-primary" onclick="submitCreate()">Crea</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

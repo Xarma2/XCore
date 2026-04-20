@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XCore HUD</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- ── HUD Principale ── -->
+<div id="hud" class="hud-visible">
+
+  <!-- Angolo in basso a sinistra: vitali + status -->
+  <div id="hud-vitals">
+    <div class="stat-bar" id="bar-health">
+      <div class="stat-icon">♥</div>
+      <div class="bar-track"><div class="bar-fill health-fill" id="fill-health"></div></div>
+      <span class="stat-value" id="val-health">100</span>
+    </div>
+    <div class="stat-bar" id="bar-armor">
+      <div class="stat-icon">🛡</div>
+      <div class="bar-track"><div class="bar-fill armor-fill" id="fill-armor"></div></div>
+      <span class="stat-value" id="val-armor">0</span>
+    </div>
+    <div class="stat-bar" id="bar-hunger">
+      <div class="stat-icon">🍖</div>
+      <div class="bar-track"><div class="bar-fill hunger-fill" id="fill-hunger"></div></div>
+      <span class="stat-value" id="val-hunger">100</span>
+    </div>
+    <div class="stat-bar" id="bar-thirst">
+      <div class="stat-icon">💧</div>
+      <div class="bar-track"><div class="bar-fill thirst-fill" id="fill-thirst"></div></div>
+      <span class="stat-value" id="val-thirst">100</span>
+    </div>
+  </div>
+
+  <!-- Angolo in basso a destra: soldi + info player -->
+  <div id="hud-info">
+    <div id="hud-player-name" class="hud-name"></div>
+    <div id="hud-job" class="hud-job"></div>
+    <div id="hud-cash" class="hud-cash">
+      <span class="cash-icon">€</span>
+      <span id="val-cash">0</span>
+    </div>
+  </div>
+
+  <!-- Speedometer (centro basso, visibile solo in veicolo) -->
+  <div id="hud-speed" class="speed-hidden">
+    <div class="speed-circle">
+      <span id="val-speed">0</span>
+      <span class="speed-unit">km/h</span>
+    </div>
+  </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

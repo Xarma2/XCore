@@ -24,7 +24,7 @@ tasks:
 
     - action: download_github
       src: overextended/ox_lib
-      ref: main
+      ref: master
       dest: ./resources/[standalone]/ox_lib
 
     - action: ensure_dir

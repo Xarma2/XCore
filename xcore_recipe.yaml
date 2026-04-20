@@ -31,7 +31,7 @@ tasks:
       path: ./resources/[xcore]
 
     - action: download_github
-      src: Xarma1/XCore
+      src: Xarma2/XCore
       ref: main
       dest: ./tmp/xcore
 

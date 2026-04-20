@@ -17,15 +17,31 @@ tasks:
       dest: ./resources
       overwrite: true
 
-    - action: download_github
-      src: overextended/oxmysql
-      ref: main
-      dest: ./resources/[standalone]/oxmysql
+    - action: download_file
+      url: https://github.com/overextended/oxmysql/releases/latest/download/oxmysql.zip
+      path: ./tmp/oxmysql.zip
 
-    - action: download_github
-      src: overextended/ox_lib
-      ref: master
+    - action: unzip
+      src: ./tmp/oxmysql.zip
+      dest: ./tmp/oxmysql
+
+    - action: move_path
+      src: ./tmp/oxmysql/oxmysql
+      dest: ./resources/[standalone]/oxmysql
+      overwrite: true
+
+    - action: download_file
+      url: https://github.com/overextended/ox_lib/releases/latest/download/ox_lib.zip
+      path: ./tmp/ox_lib.zip
+
+    - action: unzip
+      src: ./tmp/ox_lib.zip
+      dest: ./tmp/ox_lib
+
+    - action: move_path
+      src: ./tmp/ox_lib/ox_lib
       dest: ./resources/[standalone]/ox_lib
+      overwrite: true
 
     - action: ensure_dir
       path: ./resources/[xcore]
@@ -98,7 +114,7 @@ tasks:
     - action: connect_database
 
     - action: query_database
-      file: ./tmp/xcore/xcore.sql
+      file: ./resources/[xcore]/xc_shared/../../../tmp/xcore/xcore.sql
 
     - action: write_file
       file: ./server.cfg
